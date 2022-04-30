@@ -40,12 +40,6 @@
                                                             @method('DELETE')
                                                             <div class="" role="group">
 
-                                                                <a class="btn btn-secondary " href="{{route('admin.cafe.edit',$cafe->id) }}">
-                                                                    <span class="btn-label">
-                                                                       <i class="fa fa-plus" aria-hidden="true"></i>
-                                                                    </span>
-                                                                </a>
-
                                                                 <a class="btn btn-warning " href="{{route('admin.cafe.edit',$cafe->id) }}">
                                                                     <span class="btn-label">
                                                                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>

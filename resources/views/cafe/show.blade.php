@@ -82,7 +82,7 @@
                         @endif
                         <div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a href="{{ route('admin.cafe.create') }}" class="btn btn-primary">Qo'shish</a>
+                                <a href="{{ route('admin.map_create',$cafe->id) }}" class="btn btn-primary">Qo'shish</a>
                             </div>
                             <div>
                                 <table class="table table-hover">
@@ -95,39 +95,68 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {{--                                    @foreach($cafes as $cafe)--}}
-                                    {{--                                        <tr>--}}
-                                    {{--                                            <td><a href="{{ route('admin.cafe.show',$cafe->id) }}">{{ $cafe->name }}</a></td>--}}
-                                    {{--                                            <td><a href="{{ route('admin.cafe.show',$cafe->id) }}">{{ $cafe->phone }}</a></td>--}}
-                                    {{--                                            <td><img src="{{asset($cafe->img)}}" width="100px" alt=""> </td>--}}
-                                    {{--                                            <td>--}}
-                                    {{--                                                <form action="{{ route('admin.cafe.destroy',$cafe->id) }}" method="POST">--}}
-                                    {{--                                                    @csrf--}}
-                                    {{--                                                    @method('DELETE')--}}
-                                    {{--                                                    <div class="" role="group">--}}
 
-                                    {{--                                                        <a class="btn btn-secondary " href="{{route('admin.cafe.edit',$cafe->id) }}">--}}
-                                    {{--                                                                    <span class="btn-label">--}}
-                                    {{--                                                                       <i class="fa fa-plus" aria-hidden="true"></i>--}}
-                                    {{--                                                                    </span>--}}
-                                    {{--                                                        </a>--}}
+                                                                        @foreach($moves as $move)
+                                                                            <tr>
+                                                                                <td>
+                                                                                    {{ $move->move_name }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{ $move->from_date }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{ $move->to_date }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div id="map" style="height: 200px !important;width: 200px" ></div>
+                                                                                    <script type="text/javascript">
+                                                                                        function initMap() {
+                                                                                            const myLatLng = { lat: {{ $move->lattitude }}, lng: {{ $move->longitude }} };
+                                                                                            const map = new google.maps.Map(document.getElementById("map"), {
+                                                                                                zoom: 20,
+                                                                                                center: myLatLng,
+                                                                                            });
 
-                                    {{--                                                        <a class="btn btn-warning " href="{{route('admin.cafe.edit',$cafe->id) }}">--}}
-                                    {{--                                                                    <span class="btn-label">--}}
-                                    {{--                                                                       <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>--}}
-                                    {{--                                                                    </span>--}}
-                                    {{--                                                        </a>--}}
+                                                                                            new google.maps.Marker({
+                                                                                                position: myLatLng,
+                                                                                                map,
+                                                                                                title: "Hello Rajkot!",
+                                                                                            });
+                                                                                        }
 
-                                    {{--                                                        <button type="submit" class="btn btn-danger"><span class="btn-label">--}}
-                                    {{--                                                                    <i class="fa fa-trash"></i></span>--}}
-                                    {{--                                                        </button>--}}
-                                    {{--                                                    </div>--}}
-                                    {{--                                                </form>--}}
-                                    {{--                                            </td>--}}
+                                                                                        window.initMap = initMap;
+                                                                                    </script>
 
-                                    {{--                                        </tr>--}}
+                                                                                    <script type="text/javascript"
+                                                                                            src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap" ></script>
 
-                                    {{--                                    @endforeach--}}
+                                                                                </td>
+
+
+                                                                                <td>
+                                                                                    <form action="{{ route('admin.move.destroy',$move->id) }}" method="POST">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <div class="" role="group">
+
+
+
+{{--                                                                                            <a class="btn btn-warning " href="{{route('admin.move.edit',$move->id) }}">--}}
+{{--                                                                                                        <span class="btn-label">--}}
+{{--                                                                                                           <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>--}}
+{{--                                                                                                        </span>--}}
+{{--                                                                                            </a>--}}
+
+                                                                                            <button type="submit" class="btn btn-danger"><span class="btn-label">
+                                                                                                        <i class="fa fa-trash"></i></span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </td>
+
+                                                                            </tr>
+
+                                                                        @endforeach
 
                                     </tbody>
                                 </table>
