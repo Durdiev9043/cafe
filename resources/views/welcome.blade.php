@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             @if(\Illuminate\Support\Facades\Auth::user())
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     Ko`chma kafelarni joylashuvini aniqlash tizimi
                 </a>
             @else
@@ -63,11 +63,10 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                Tizimdan chiqish
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -88,18 +87,24 @@
         </div>
     </nav>
 
-    <div id="carouselExampleControls" class="carousel slide" style="height: 70vh" data-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide" style="height: 70vh;background: url({{asset('img/img_2.jpg')}});background-position: center; background-repeat: no-repeat;background-size: cover; height:100vh" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
+{{--                <img src="{{asset('img/img_2.jpg')}}" class="d-block w-100" style=" filter: brightness(0.5) contrast(1.1)"   alt="...">--}}
                 <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
                     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" style="width: 90% !important;margin: auto !important;">
                         @foreach($cafes as $cafe)
                         <div class="col-3 p-3" align="center">
                             <div class="card h-100 shadow-sm p-2" align="center" style="display: inline-block;text-align: center !important;">
                                 <img src="{{ asset($cafe->img) }}" align="center" style="width: 300px !important;" class="card-img-top" alt="...">
-                                <div class="card-body">
+                                <div class="card-body" style="padding: 2px !important;">
                                     <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary">Tel:</span> <span class="float-end price-hp underline">{{ $cafe->phone }}</span> </div>
                                     <h5 class="card-title">{{ $cafe->name }}</h5>
+                                    @foreach($menus as $menu)
+                                        @if($cafe->id == $menu->cafe_id)
+                                        <div class="clearfix "> <span class="float-start badge rounded-pill text-dark "><h6 style="margin: 0 !important;">{{ $menu->name }}</h6></span> <span class="float-end price-hp underline">{{  $menu->summ  }}</span> </div>
+@endif
+                                    @endforeach
                                     <div class="text-center my-4"> <a href="{{ route('show',$cafe->id) }}" class="btn btn-warning">Ma`lumotlari</a> </div>
                                 </div>
                             </div>

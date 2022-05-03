@@ -29,6 +29,32 @@
                                     </thead>
                                     <tbody>
                                     @foreach($cafes as $cafe)
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role>0)
+                                            <tr>
+                                                <td><a href="{{ route('admin.cafe.show',$cafe->id) }}">{{ $cafe->name }}</a></td>
+                                                <td><a href="{{ route('admin.cafe.show',$cafe->id) }}">{{ $cafe->phone }}</a></td>
+                                                <td><img src="{{asset($cafe->img)}}" width="100px" alt=""> </td>
+                                                <td>
+                                                    <form action="{{ route('admin.cafe.destroy',$cafe->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <div class="" role="group">
+
+                                                            <a class="btn btn-warning " href="{{route('admin.cafe.edit',$cafe->id) }}">
+                                                                    <span class="btn-label">
+                                                                       <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+                                                                    </span>
+                                                            </a>
+
+                                                            <button type="submit" class="btn btn-danger"><span class="btn-label">
+                                                                    <i class="fa fa-trash"></i></span>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                        @else
                                         @if($cafe->user_id == \Illuminate\Support\Facades\Auth::user()->id)
                                                 <tr>
                                                     <td><a href="{{ route('admin.cafe.show',$cafe->id) }}">{{ $cafe->name }}</a></td>
@@ -55,7 +81,7 @@
 
                                                 </tr>
                                         @endif
-
+                                        @endif
                                                 @endforeach
 
                                     </tbody>
