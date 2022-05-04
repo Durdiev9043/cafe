@@ -24,16 +24,21 @@
                                         <th>to'yxona nomi</th>
                                         <th>telefon raqami</th>
                                         <th>surat</th>
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role == 1)
+                                            <th>holati</th>
+                                        @endif
                                         <th>amallar</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     @foreach($cafes as $cafe)
-                                        @if(\Illuminate\Support\Facades\Auth::user()->role>0)
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role == 1)
                                             <tr>
                                                 <td><a href="{{ route('admin.cafe.show',$cafe->id) }}">{{ $cafe->name }}</a></td>
                                                 <td><a href="{{ route('admin.cafe.show',$cafe->id) }}">{{ $cafe->phone }}</a></td>
                                                 <td><img src="{{asset($cafe->img)}}" width="100px" alt=""> </td>
+                                                <td>{{ $cafe->st[$cafe->status] }} </td>
                                                 <td>
                                                     <form action="{{ route('admin.cafe.destroy',$cafe->id) }}" method="POST">
                                                         @csrf

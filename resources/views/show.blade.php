@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" >
-        <div class="row justify-content-center">
+    <div class="container"  >
+        <div class="row justify-content-center" style="margin: 0 !important;" >
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header"><h3 class="d-inline-block">{{ $cafe->name }}</h3>
@@ -15,30 +15,7 @@
                             </div>
                         @endif
                         <div>
-                            <div>
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>taom nomi</th>
-                                        <th>taom soni</th>
-                                        <th>narxi</th>
-                                        <th>o`lchov birliki</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($menus as $menu)
-                                        <tr>
-                                            <td>{{ $menu->name }}</td>
-                                            <td>{{ $menu->count }}</td>
-                                            <td>{{ $menu->summ }}</td>
-                                            <td>{{ $menu->oneness }}</td>
-                                        </tr>
-
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                @foreach($moves as $move)
+                            <div> @foreach($moves as $move)
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $move->move_name }}</h5>
@@ -72,6 +49,31 @@
                                         {{--                                        <img class="card-img-bottom" src="..." alt="Card image cap">--}}
                                     </div>
                                 @endforeach
+                                <table class="table table-hover mt-3">
+                                    <thead>
+                                    <tr>
+                                        <th>taom nomi</th>
+                                        <th>taom soni</th>
+                                        <th>narxi</th>
+                                        <th>o`lchov birliki</th>
+                                        <th>surati</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($menus as $menu)
+                                        <tr>
+                                            <td>{{ $menu->name }}</td>
+                                            <td>{{ $menu->count }}</td>
+                                            <td>{{ $menu->summ }}</td>
+                                            <td>{{ $menu->oneness }}</td>
+                                            <td><img src="{{asset($menu->img)}}" width="120px" alt=""></td>
+                                        </tr>
+
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
 

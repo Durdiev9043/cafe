@@ -25,6 +25,7 @@
                                         <th>soni</th>
                                         <th>o`lchov birliki</th>
                                         <th>narxi</th>
+                                        <th>surati</th>
                                         <th>amallar</th>
                                     </tr>
                                     </thead>
@@ -35,6 +36,7 @@
                                             <td>{{ $menu->count }}</td>
                                             <td>{{ $menu->oneness }}</td>
                                             <td>{{ $menu->summ }}</td>
+                                            <td><img src="{{ asset($menu->img) }}" alt="" width="100px"></td>
 
                                             <td>
                                                 <form action="{{ route('admin.menu.destroy',$menu->id) }}" method="POST">

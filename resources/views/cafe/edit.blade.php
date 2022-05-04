@@ -4,29 +4,29 @@
 
     <div class="contianer w-50 m-auto p-4" style="background: #efefef">
 
-
-        <form action="{{ route('admin.menu.store') }}" method="POST" enctype="multipart/form-data">
+        <h4>siz o`z toyhonangizni qo`shing</h4>
+        <form action="{{ route('admin.cafe.update',$cafe->id) }}" method="POST" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
-            <input type="hidden" name="cafe_id" value="{{$id}}">
+
             <div class="form-group">
                 <label for="exampleInputEmail1">nomi</label>
-                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="name" class="form-control" value="{{$cafe->name}}" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">soni</label>
-                <input type="text" name="count" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
-            </div>
-            <div class="form-group">
-                <label for="img1">o`lchov birliki</label>
-                <input type="text" name="oneness" required class="form-control" id="img1"  >
-            </div>
-            <div class="form-group">
-                <label for="img1">bahosi</label>
-                <input type="text" name="summ" required class="form-control" id="img1"  >
+                <label for="exampleInputEmail1">telefon raqami</label>
+                <input type="text" name="phone" class="form-control" value="{{$cafe->phone}}" id="exampleInputEmail1" aria-describedby="emailHelp" >
             </div>
             <div class="form-group">
                 <label for="img1">surati</label>
-                <input type="file" name="img" required class="form-control" id="img1"  >
+                <input type="file" name="img"  class="form-control" id="img1"  >
+            </div>
+            <div class="form-group">
+                <label for="img1">surati</label>
+               <select name="status" class="form-control">
+                   <option value="0">active emas</option>
+                   <option value="1">active</option>
+               </select>
             </div>
             <div class="form-group" align="center">
                 <button  id="threeButtons" onclick="executeExample('threeButtons')" class="btn btn-primary mt-3">yuborish</button>

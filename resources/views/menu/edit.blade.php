@@ -4,7 +4,7 @@
 
     <div class="contianer w-50 m-auto p-4" style="background: #efefef">
 
-        <h4>siz o`z toyhonangizni qo`shing</h4>
+
         <form action="{{ route('admin.menu.update',$menu->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
@@ -14,16 +14,20 @@
                 <input type="text" name="name" class="form-control" value="{{$menu->name}}" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">count</label>
+                <label for="exampleInputEmail1">soni</label>
                 <input type="text" name="count" class="form-control" value="{{$menu->count}}" id="exampleInputEmail1" aria-describedby="emailHelp" >
             </div>
             <div class="form-group">
-                <label for="img1">oneness</label>
+                <label for="img1">o`lchov birliki</label>
                 <input type="text" name="oneness" class="form-control" value="{{$menu->oneness}}" id="img1"  >
             </div>
             <div class="form-group">
-                <label for="img1">summ</label>
+                <label for="img1">bahosi</label>
                 <input type="text" name="summ" required class="form-control" value="{{$menu->summ}}" id="img1"  >
+            </div>
+            <div class="form-group">
+                <label for="img1">surati</label>
+                <input type="file" name="img" class="form-control"  id="img1"  >
             </div>
             <div class="form-group" align="center">
                 <button  id="threeButtons" onclick="executeExample('threeButtons')" class="btn btn-primary mt-3">yuborish</button>

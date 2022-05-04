@@ -13,15 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
+            //name, count, olchov birlik, summasi
             $table->id();
+            $table->unsignedBigInteger('cafe_id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->tinyInteger('role')->default(0);
-            $table->rememberToken();
+            $table->string('count');
+            $table->string('oneness');
+            $table->string('summ');
+            $table->string('img');
             $table->timestamps();
+
+            $table->foreign('cafe_id')->references('id')->on('cafes');
+
         });
     }
 
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('menus');
     }
 };

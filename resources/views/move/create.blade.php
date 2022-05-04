@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <h2>Google Map</h2>
+                    <h2>Joylashuv qo`shish</h2>
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -31,28 +31,28 @@
                         @csrf
                         <input type="hidden" name="cafe_id" value="{{$id}}">
                         <div class="form-group">
-                            <label for="title">move_name</label>
-                            <input type="text" name="move_name" placeholder="Title" class="form-control"/>
+                            <label for="title">manzil</label>
+                            <input type="text" name="move_name" placeholder="manzil" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="title">from_date</label>
-                            <input type="date" name="from_date" placeholder="Description" class="form-control"/>
+                            <label for="title">qachondan boshlab</label>
+                            <input type="date" name="from_date" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="title">to_date</label>
-                            <input type="date" name="to_date" placeholder="Description" class="form-control"/>
+                            <label for="title">qachongach</label>
+                            <input type="date" name="to_date" class="form-control"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="lat">lat</label>
-                            <input type="text" name="lattitude"  id="latitude" value="0" class="form-control"/>
+                            <label for="lat">uzunlik</label>
+                            <input type="text" name="lattitude"  id="latitude"  class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="lng">lng</label>
-                            <input type="text" name="longitude" id="longitude" value="0" class="form-control"/>
+                            <label for="lng">kenglik</label>
+                            <input type="text" name="longitude" id="longitude"  class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" value="Add Map" class="btn btn-success"/>
+                            <input type="submit" name="submit" value="saqlash" class="btn btn-success"/>
                         </div>
                     </form>
                 </div>

@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <h2>Google Map</h2>
+                    <h2></h2>
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -33,28 +33,28 @@
                         @csrf
                         <input type="hidden" name="cafe_id" value="{{$move->cafe_id}}">
                         <div class="form-group">
-                            <label for="title">move_name</label>
+                            <label for="title">manzil</label>
                             <input type="text" name="move_name" placeholder="Title" value="{{ $move->move_name }}"  class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="title">from_date</label>
+                            <label for="title">qachondan boshlab</label>
                             <input type="date" name="from_date" placeholder="Description" value="{{ $move->from_date }}" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="title">to_date</label>
+                            <label for="title">qachongacha</label>
                             <input type="date" name="to_date" value="{{ $move->to_date }}" placeholder="Description" class="form-control"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="lat">lat</label>
-                            <input type="text" name="lattitude"  value="{{ $move->lattitude }}" id="latitude" value="0" class="form-control"/>
+                            <label for="lat">uzunlik</label>
+                            <input type="text" name="lattitude"  value="{{ $move->lattitude }}" id="latitude"  class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="lng">lng</label>
-                            <input type="text" name="longitude" id="longitude"  value="{{ $move->longitude }}" value="0" class="form-control"/>
+                            <label for="lng">kenglik</label>
+                            <input type="text" name="longitude" id="longitude"  value="{{ $move->longitude }}" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" value="Add Map" class="btn btn-success"/>
+                            <input type="submit" name="submit" value="Saqlash" class="btn btn-success"/>
                         </div>
                     </form>
                 </div>
