@@ -21,21 +21,20 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-        if($request->hasFile('img')){
-
+        $request->validate([
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
         $uuid = Str::uuid()->toString();
-        $file_name = $uuid . '-' . time() . '.' . $request->img->getClientOriginalName();
-        $request->img->move(public_path('/images/'), $file_name);
-    }
+        $fileName = $uuid . '-' . time() . '.' . $request->img->extension();
+        $request->img->move(public_path('../storage/app/public/posts'), $fileName);
         Menu::create([
             'cafe_id'=>$request->cafe_id,
             'name'=>$request->name,
             'count'=>$request->count,
             'oneness'=>$request->oneness,
             'summ'=>$request->summ,
-            'img'=>'images/'.$file_name,
+            'img' => '../storage/app/public/posts/'.$fileName,
         ]);
-
         return redirect()->route('admin.cafe.show',$request->cafe_id);
     }
 
