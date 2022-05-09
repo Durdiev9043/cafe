@@ -21,13 +21,13 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th>to'yxona nomi</th>
-                                        <th>telefon raqami</th>
-                                        <th>surat</th>
+                                        <th>Nomi</th>
+                                        <th>Telefon raqami</th>
+                                        <th>Surat</th>
                                         @if(\Illuminate\Support\Facades\Auth::user()->role == 1)
-                                            <th>holati</th>
+                                            <th>Holati</th>
                                         @endif
-                                        <th>amallar</th>
+                                        <th>Amallar</th>
                                     </tr>
                                     </thead>
                                     <tbody>

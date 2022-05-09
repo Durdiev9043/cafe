@@ -23,7 +23,7 @@ class MoveController extends Controller
     public function store(Request $request)
     {
         Move::create($request->all());
-        return redirect()->route('admin.cafe.show',$request->cafe_id);
+        return redirect()->route('admin.cafe.show',$request->cafe_id)->with('success','Saqlandi');
     }
 
 
@@ -42,8 +42,9 @@ class MoveController extends Controller
 
     public function update(Request $request, Move $move)
     {
+
         $move->update($request->all());
-        return redirect()->route('admin.cafe.show',$move->cafe_id);
+        return redirect()->route('admin.cafe.show',$move->cafe_id)->with('success','Saqlandi');
     }
 
 
@@ -51,6 +52,6 @@ class MoveController extends Controller
     {
 
         $move->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','O`chirildi');
     }
 }

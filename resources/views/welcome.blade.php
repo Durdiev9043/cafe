@@ -87,7 +87,7 @@
         </div>
     </nav>
 
-    <div id="carouselExampleControls" class="carousel slide" style="height: 70vh;background: url({{asset('img/img_2.jpg')}});background-position: center; background-repeat: no-repeat;background-size: cover; height:100vh" data-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide" style="background: url({{asset('img/img_2.jpg')}});background-position: center; background-repeat: no-repeat;background-size: cover; height:100vh" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
 {{--                <img src="{{asset('img/img_2.jpg')}}" class="d-block w-100" style=" filter: brightness(0.5) contrast(1.1)"   alt="...">--}}
@@ -110,6 +110,7 @@
                             </div>
                         </div>
                         @endforeach
+
                     </div>
                 </div>
             </div>

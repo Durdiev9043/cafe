@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=5afb64b4-7bd0-45f6-a267-1a9bca293161" type="text/javascript"></script>
+    <script src="geolocation_ip.js" type="text/javascript"></script>
+
     <div class=""  style="width: 90% !important; margin: auto">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -73,15 +76,16 @@
 
 
             <div class="col-md-6">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">Joylashuvlar</div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+
                         <div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a href="{{ route('admin.map_create',$cafe->id) }}" class="btn btn-primary">Qo'shish</a>
@@ -91,31 +95,40 @@
 
                                     @foreach($moves as $move)
                                         <div class="card">
-                                            <div class="card-body">
+                                            <div class="card-body" style="padding: 5px !important;">
                                                 <h5 class="card-title">{{ $move->move_name }}</h5>
-                                                <p class="card-text"></p>
-                                                <p class="card-text"><small class="text-muted">{{ $move->from_date }} dan boshlab </small></p>
-                                                <p class="card-text"><small class="text-muted">{{ $move->to_date }} gacha shu joyda bolamiz</small></p>
+                                                <p class="card-text" style="margin-bottom: 5px !important;"><small class="text-muted">{{ $move->from_date }} dan boshlab </small></p>
+                                                <p class="card-text" style="margin-bottom: 5px !important;"><small class="text-muted">{{ $move->to_date }} gacha shu joyda bolamiz</small></p>
 
                                             </div>
-                                            <div id="map" class="card-img-bottom" style="height: 200px !important;width: 100%" ></div>
+                                            <div id="map{{$move->id}}" class="card-img-bottom" style="height: 200px !important;width: 100%" ></div>
                                             <script type="text/javascript">
-                                                function initMap() {
-                                                    const myLatLng = { lat: {{ $move->lattitude }}, lng: {{ $move->longitude }} };
-                                                    const map = new google.maps.Map(document.getElementById("map"), {
-                                                        zoom: 17,
-                                                        center: myLatLng,
-                                                        mapTypeId: 'satellite',
-                                                    });
 
-                                                    new google.maps.Marker({
-                                                        position: myLatLng,
-                                                        map,
-                                                        title: "Hello Rajkot!",
-                                                    });
+                                                ymaps.ready(init);
+
+                                                function init() {
+                                                    // Данные о местоположении, определённом по IP
+                                                    var geolocation = ymaps.geolocation,
+                                                        // координаты
+                                                        coords = [{{$move->lattitude}}, {{$move->longitude}}],
+                                                        myMap = new ymaps.Map('map{{$move->id}}', {
+                                                            center: coords,
+                                                            zoom: 17
+                                                        });
+
+                                                    myMap.geoObjects.add(
+                                                        new ymaps.Placemark(
+                                                            coords,
+                                                            {
+                                                                // В балуне: страна, город, регион.
+                                                                balloonContentHeader: geolocation.country,
+                                                                balloonContent: geolocation.city,
+                                                                balloonContentFooter: geolocation.region
+                                                            }
+                                                        )
+                                                    );
                                                 }
 
-                                                window.initMap = initMap;
                                             </script>
 
                                             <script type="text/javascript"
