@@ -13,8 +13,8 @@
                 <input type="text" placeholder="Kafe nomi" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Telefon raqami</label>
-                <input type="tel" name="phone" placeholder="977777777" pattern="[0-9]{9}" class="form-control" >
+                <label for="phone">Telefon raqami</label>
+                <input type="tel" id="phone" name="phone" placeholder="977777777" pattern="[0-9]{9}" class="form-control" >
             </div>
             <div class="form-group">
                 <label for="img1">Kafe suratini qo'shish</label>
