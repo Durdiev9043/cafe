@@ -21,21 +21,22 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
+        if($request->hasFile('img')){
+
         $uuid = Str::uuid()->toString();
-        $fileName = $uuid . '-' . time() . '.' . $request->img->extension();
-        $request->img->move(public_path('../storage/app/public/posts'), $fileName);
+        $file_name = $uuid . '-' . time() . '.' . $request->img->getClientOriginalName();
+        $request->img->move(public_path('/images/'), $file_name);
+    }
         Menu::create([
             'cafe_id'=>$request->cafe_id,
             'name'=>$request->name,
             'count'=>$request->count,
             'oneness'=>$request->oneness,
             'summ'=>$request->summ,
-            'img' => '../storage/app/public/posts/'.$fileName,
+            'img'=>'images/'.$file_name,
         ]);
-        return redirect()->route('admin.cafe.show',$request->cafe_id);
+
+        return redirect()->route('admin.cafe.show',$request->cafe_id)->with('success','Saqlandi');
     }
 
 
@@ -53,25 +54,36 @@ class MenuController extends Controller
 
     public function update(Request $request, Menu $menu)
     {
+
         if($request->hasFile('img')){
 
             $uuid = Str::uuid()->toString();
             $file_name = $uuid . '-' . time() . '.' . $request->img->getClientOriginalName();
             $request->img->move(public_path('/images/'), $file_name);
+            $menu->update([
+                'name'=>$request->name,
+                'count'=>$request->count,
+                'oneness'=>$request->oneness,
+                'summ'=>$request->summ,
+                'img'=>'images/'.$file_name,
+            ]);
+            return redirect()->route('admin.cafe.index')->with('success','Saqlandi');
+        }else{
+            $menu->update([
+                'name'=>$request->name,
+                'count'=>$request->count,
+                'oneness'=>$request->oneness,
+                'summ'=>$request->summ,
+            ]);
+            return redirect()->route('admin.cafe.index')->with('success','Saqlandi');
         }
-        $menu->update([
-            'name'=>$request->name,
-            'count'=>$request->count,
-            'oneness'=>$request->oneness,
-            'summ'=>$request->summ,
-            'img'=>'images/'.$file_name,
-        ]);
-        return redirect()->route('admin.cafe.show',$request->cafe_id);
+
+
     }
 
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','O`chirildi');
     }
 }
