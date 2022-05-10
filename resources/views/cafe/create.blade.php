@@ -14,14 +14,14 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Telefon raqami</label>
-                <input type="tel" name="phone" placeholder="977777777" pattern="[0-9]{9}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                <input type="tel" name="phone" placeholder="977777777" pattern="[0-9]{9}" class="form-control" >
             </div>
             <div class="form-group">
                 <label for="img1">Kafe suratini qo'shish</label>
                 <input type="file" name="img" required accept="image/png, image/gif, image/jpeg"  class="form-control" id="img1"  >
             </div>
             <div class="form-group" align="center">
-                <button  id="threeButtons" onclick="executeExample('threeButtons')" class="btn btn-primary mt-3">Yuborish</button>
+                <button  type="submit"  class="btn btn-primary mt-3">Yuborish</button>
             </div>
         </form>
     </div>
